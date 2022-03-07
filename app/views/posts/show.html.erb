@@ -1,0 +1,40 @@
+<h1>Show</h1>
+
+
+<p>
+  ポイント: <br>
+  <%= @post.point_name %>
+</p>
+
+<p>
+  サイズ: <br>
+  <%= @post.size %>
+</p>
+
+<p>
+  点数: <br>
+  <%= @post.score %>
+</p>
+
+<p>
+  コメント: <br>
+  <%= simple_format @post.comment %>
+</p>
+
+
+<p>
+  自分用メモ: <br>
+  <%= simple_format @post.memo %>
+</p>
+
+
+
+<% if @post.user.id == current_user.id %>
+  <%= link_to "編集", edit_post_path(@post) %>
+<% end %>
+
+<%= link_to user_path(@post.user) do %>
+  <%= @post.user.username %>
+<% end %>
+
+

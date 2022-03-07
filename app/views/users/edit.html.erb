@@ -1,0 +1,22 @@
+<h1>マイページ編集</h1>
+
+
+<%= form_with model: @user do |form| %>
+  <% if @user.errors.any? %>
+    <div>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :username, "新しい名前" %><br>
+    <%= form.text_field :username %>
+  </div>
+  <div>
+    <%= form.submit "更新" %>
+  </div>
+<% end %>
