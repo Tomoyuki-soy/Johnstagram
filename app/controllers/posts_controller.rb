@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+   before_action :authenticate_user!, except: [:index]
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(5)
+    @post.user_id = current_user.id
   end
 
   def show
@@ -41,12 +42,12 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to user_path(current_user.id)
   end
   
   
   private
   def post_params
-    params.require(:post).permit(:point_name, :size, :score, :comment, :memo)
+    params.require(:post).permit(:point_name, :size, :score, :comment, :memo, :status)
   end
 end

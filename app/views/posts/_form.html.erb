@@ -1,41 +1,54 @@
-<%= form_with model: @post do |form| %>
-  <% if @post.errors.any? %>
-    <div>
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= form_with model: @post do |form| %>
+        <% if @post.errors.any? %>
+          <div>
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :point_name, "ポイント名" %><br>
-    <%= form.text_field :point_name %>
-  </div>
-  
-  <div>
-    <%= form.label :size, "サイズ" %><br>
-    <%= form.text_field :size %>
-  </div>
-  
-  <div>
-    <%= form.label :score, "点数" %><br>
-    <%= form.number_field :score %>
-  </div>
-  
-  <div>
-    <%= form.label :comment, "コメント" %><br>
-    <%= form.text_area :comment %>
-  </div>
-  
-   <div>
-    <%= form.label :memo, "自分用メモ" %><br>
-    <%= form.text_area :memo %>
-  </div>
-  
-  <div>
-    <%= form.submit "投稿" %>
-  </div>
-
-<% end %>
+      
+        <div class="form-group">
+          <%= form.label :point_name, "ポイント名" %><br>
+          <%= form.text_field :point_name, autofocus: true, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= form.label :size, "サイズ" %><br>
+          <%= form.text_field :size, autofocus: true, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= form.label :score, "点数" %><br>
+          <%= form.number_field :score, autofocus: true, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= form.label :comment, "コメント" %><br>
+          <%= form.text_area :comment, autofocus: true, class: "form-control" %>
+        </div>
+        
+        
+        <div class="form-group">
+          <%= form.label :status, "自分用メモを公開しますか？" %><br>
+          <%= form.select :status, [["公開", 1], ["非公開", 2]], include_blank: "選択して下さい" %>
+        </div>
+    
+        <div class="form-group">
+          <%= form.label :memo, "自分用メモ" %><br>
+          <%= form.text_area :memo, autofocus: true, class: "form-control" %>
+        </div>
+      
+        <div class="text-end" style="margin-top: 15px;">
+          <%= form.submit "投稿", class: "btn btn-primary" %>
+        </div>
+    
+      <% end %>
+    </div>   
+  </div> 
+</div> 

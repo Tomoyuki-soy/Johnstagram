@@ -1,40 +1,75 @@
-<h1>Show</h1>
+<section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <div class="container">
+            <div class="text-center">
+                 
+              <div>
+                <h2 class="fw-light">
+                point:
+                <%= @post.point_name %>
+                </h2>
+              </div>
+              
+              <div>
+                <h2 class="fw-light">
+                size:
+                <%= @post.size %>
+                </h2>
+              </div>
+              
+              <div>
+                <h2 class="fw-light">
+                score:
+                <%= @post.score %>
+                </h2>
+              </div>
+  
+              <p><%= @post.updated_at.strftime("%Y年-%m月-%d日") %></p>
+              <p>
+                posted by
+                <%= link_to user_path(@post.user) do %>
+                <%= @post.user.username %>
+                <% end %>
+              </p>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </section>
 
 
-<p>
-  ポイント: <br>
-  <%= @post.point_name %>
-</p>
 
-<p>
-  サイズ: <br>
-  <%= @post.size %>
-</p>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
 
-<p>
-  点数: <br>
-  <%= @post.score %>
-</p>
-
-<p>
-  コメント: <br>
-  <%= simple_format @post.comment %>
-</p>
-
-
-<p>
-  自分用メモ: <br>
-  <%= simple_format @post.memo %>
-</p>
-
-
-
-<% if @post.user.id == current_user.id %>
-  <%= link_to "編集", edit_post_path(@post) %>
-<% end %>
-
-<%= link_to user_path(@post.user) do %>
-  <%= @post.user.username %>
-<% end %>
-
-
+              
+             
+                <h6>コメント</h6><br>
+                <p><%= simple_format @post.comment %></p>
+           
+              
+              
+              
+                   <% if user_signed_in? %>
+                    <h6>自分用メモ</h6>
+                      <% if @post.status == "1" %>
+                        <p><%= simple_format @post.memo %></p>
+                      <% elsif @post.status == "2" && @post.user.id == current_user.id %>
+                        <p><%= simple_format @post.memo %></p>
+                      <% else %>
+                        <p>非公開</p>
+                      <% end %>
+                    <% end %> 
+              
+              
+              
+              
+ 
+              <% if @post.user.id == current_user.id %>
+                <span><%= link_to "編集", edit_post_path(@post), class:"btn btn-outline-success btn-sm" %></span>
+              <% end %>
+      </div>
+    </div>
+  </div>
