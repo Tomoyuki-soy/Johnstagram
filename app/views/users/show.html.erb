@@ -48,9 +48,6 @@
                 <% end %>
               <% end %> 
           
-          
-          
-          
               <small class="text-muted"><%= post.updated_at.strftime("%Y年-%m月-%d日") %></small>
               
               <span><%= link_to "詳細", post_path(post), class:"btn btn-outline-success btn-sm" %></span>
@@ -58,10 +55,6 @@
                 <span><%= link_to "編集", edit_post_path(post), class:"btn btn-outline-success btn-sm" %></span>
                 <span><%= link_to "削除", post_path(post), class:"btn btn-outline-danger btn-sm", method: :delete, data: { confirm:'本当に削除しますか？'} %></span>
               <% end %>
-
-
-
-
 
             </div>
           </div>    

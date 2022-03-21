@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :users
   resources :posts
-  
   post '/guests/guest_sign_in', to: 'guests#new_guest'
 end
